@@ -28,7 +28,7 @@
 <meta name="description" content="Barrio quinta privado en Cerrito, Benjamín Aceval. 105 lotes de 720 a 1.600 m² con laguna natural, canchas deportivas y acceso controlado. Invertí hoy, disfrutá siempre.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;family=Lexend:wght@300..800&amp;display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -985,9 +985,10 @@
   }
   @media(max-width:520px){#backToTop{bottom:1.2rem;left:1.2rem;width:42px;height:42px}}
 </style>
+<link rel="stylesheet" href="maria-betania-diseno.css">
 </head>
 
-<body>
+<body class="mb-design">
 
 <!-- ===== PRELOADER ===== -->
 <div id="preloader" class="">
@@ -1076,8 +1077,8 @@
       </div>
     </div>
     <div class="hero-buttons">
-      <a href="https://wa.me/595981174005?text=Hola,%20quiero%20info%20sobre%20Lotes%20Quinta%20Maria%20Betania" class="btn-primary" target="_blank" id="heroCta1" data-i18n="heroCta1">Quiero mi lote →</a>
-      <a href="#caracteristicas" class="btn-secondary" data-i18n="heroCta2">Ver características</a>
+      <a href="#plano" class="btn-primary" data-i18n="heroCta2">Ver lotes</a>
+      <a href="https://wa.me/595981174005?text=Hola,%20quiero%20agendar%20una%20visita%20a%20Lotes%20Quinta%20Maria%20Betania" class="btn-secondary" target="_blank" rel="noopener" id="heroCta1" data-i18n="heroCta1">Agendar una visita</a>
     </div>
   </div>
 
@@ -1490,6 +1491,15 @@
   </div>
 </footer>
 
+<!-- ===== BARRA INFERIOR (CELULAR) ===== -->
+<div id="mbTabbar" role="navigation" aria-label="Accesos rápidos">
+  <a href="#inicio" class="mb-tab" data-mb-tab="inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg><span data-i18n="tabInicio">Inicio</span></a>
+  <a href="#plano" class="mb-tab" data-mb-tab="plano" id="mbTabLotes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg><span data-i18n="tabLotes">Lotes</span></a>
+  <a href="#precios" class="mb-tab" data-mb-tab="precios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg><span data-i18n="tabPrecios">Precios</span></a>
+  <a href="https://wa.me/595981174005?text=Hola,%20quiero%20agendar%20una%20visita%20a%20Lotes%20Quinta%20Maria%20Betania" class="mb-tab mb-tab--visita" id="mbTabVisita" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-i18n="tabVisita">Visita</span></a>
+  <button type="button" class="mb-tab" onclick="toggleMobileMenu()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span data-i18n="tabMenu">Menú</span></button>
+</div>
+
 <!-- ===== WHATSAPP FLOAT ===== -->
 <a href="https://wa.me/595981174005?text=Hola,%20quiero%20información%20sobre%20Lotes%20Quinta%20Maria%20Betania" class="wa-float" target="_blank" aria-label="Consultar por WhatsApp" id="waFloat">
   <span class="wa-label" data-i18n="waLabel">Consultar por WhatsApp</span>
@@ -1584,7 +1594,8 @@ const translations = {
     heroSlogan:'“Donde la naturaleza se convierte en patrimonio.”',
     heroSub:'Familia, tranquilidad y seguridad en 14 hectáreas de naturaleza en el Km 50 de la Transchaco. Tu lugar de descanso y recreación familiar.',
     stat1Label:'Lotes disponibles',stat2Label:'Lote típico',stat3Label:'Superficie total',
-    heroCta1:'Quiero mi lote →',heroCta2:'Ver características',heroScroll:'Explorar',
+    heroCta1:'Agendar una visita',heroCta2:'Ver lotes',heroScroll:'Explorar',
+    waVisitMsg:'Hola,%20quiero%20agendar%20una%20visita%20a%20Lotes%20Quinta%20Maria%20Betania',tabInicio:'Inicio',tabLotes:'Lotes',tabPrecios:'Precios',tabVisita:'Visita',tabMenu:'Menú',
     trust1:'Título de propiedad',trust2:'Financiación directa sin bancos',trust3:'Cuotas en guaraníes · Reajuste anual del 5%',trust4:'Sobre la Ruta Transchaco',
     sobreLabel:'Sobre el proyecto',
     sobreTitle:'Un refugio de <em>naturaleza</em><br>a minutos de todo',
@@ -1661,7 +1672,8 @@ const translations = {
     heroSlogan:'“Where nature becomes your legacy.”',
     heroSub:'Family, tranquility and security on 14 hectares of nature at Km 50 of the Transchaco highway. Your place for rest and family recreation.',
     stat1Label:'Available lots',stat2Label:'Typical lot',stat3Label:'Total area',
-    heroCta1:'I want my lot →',heroCta2:'See features',heroScroll:'Explore',
+    heroCta1:'Book a visit',heroCta2:'See lots',heroScroll:'Explore',
+    waVisitMsg:'Hello,%20I%20would%20like%20to%20book%20a%20visit%20to%20Lotes%20Quinta%20Maria%20Betania',tabInicio:'Home',tabLotes:'Lots',tabPrecios:'Prices',tabVisita:'Visit',tabMenu:'Menu',
     trust1:'Property title',trust2:'Direct financing, no banks',trust3:'Installments in guaraníes · 5% annual adjustment',trust4:'On the Transchaco Highway',
     sobreLabel:'About the project',
     sobreTitle:'A nature <em>retreat</em><br>minutes from everything',
@@ -1738,7 +1750,8 @@ const translations = {
     heroSlogan:'“Onde a natureza se torna patrimônio.”',
     heroSub:'Família, tranquilidade e segurança em 14 hectares de natureza no Km 50 da Transchaco. Seu lugar de descanso e recreação familiar.',
     stat1Label:'Lotes disponíveis',stat2Label:'Lote típico',stat3Label:'Área total',
-    heroCta1:'Quero meu lote →',heroCta2:'Ver características',heroScroll:'Explorar',
+    heroCta1:'Agendar uma visita',heroCta2:'Ver lotes',heroScroll:'Explorar',
+    waVisitMsg:'Ol%C3%A1,%20quero%20agendar%20uma%20visita%20ao%20Lotes%20Quinta%20Maria%20Betania',tabInicio:'Início',tabLotes:'Lotes',tabPrecios:'Preços',tabVisita:'Visita',tabMenu:'Menu',
     trust1:'Título de propriedade',trust2:'Financiamento direto sem bancos',trust3:'Parcelas em guaranis · Reajuste anual de 5%',trust4:'Na Rodovia Transchaco',
     sobreLabel:'Sobre o projeto',
     sobreTitle:'Um refúgio de <em>natureza</em><br>a minutos de tudo',
@@ -1815,7 +1828,8 @@ const translations = {
     heroSlogan:'“Dove la natura diventa patrimonio.”',
     heroSub:'Famiglia, tranquillità e sicurezza in 14 ettari di natura al Km 50 della Transchaco. Il tuo luogo di riposo e svago familiare.',
     stat1Label:'Lotti disponibili',stat2Label:'Lotto tipo',stat3Label:'Superficie totale',
-    heroCta1:'Voglio il mio lotto →',heroCta2:'Vedi caratteristiche',heroScroll:'Esplora',
+    heroCta1:'Prenota una visita',heroCta2:'Vedi i lotti',heroScroll:'Esplora',
+    waVisitMsg:'Ciao,%20vorrei%20prenotare%20una%20visita%20a%20Lotes%20Quinta%20Maria%20Betania',tabInicio:'Home',tabLotes:'Lotti',tabPrecios:'Prezzi',tabVisita:'Visita',tabMenu:'Menu',
     trust1:'Titolo di proprietà',trust2:'Finanziamento diretto senza banche',trust3:'Rate in guaraní · Adeguamento annuo del 5%',trust4:'Sulla Strada Transchaco',
     sobreLabel:'Sul progetto',
     sobreTitle:'Un rifugio di <em>natura</em><br>a pochi minuti da tutto',
@@ -1892,7 +1906,8 @@ const translations = {
     heroSlogan:'„Wo die Natur zum Vermögen wird.“',
     heroSub:'Familie, Ruhe und Sicherheit auf 14 Hektar Natur am Km 50 der Transchaco. Ihr Ort für Erholung und Familienfreizeit.',
     stat1Label:'Verfügbare Grundstücke',stat2Label:'Typisches Grundstück',stat3Label:'Gesamtfläche',
-    heroCta1:'Ich will mein Grundstück →',heroCta2:'Ausstattung ansehen',heroScroll:'Entdecken',
+    heroCta1:'Besichtigung vereinbaren',heroCta2:'Grundstücke ansehen',heroScroll:'Entdecken',
+    waVisitMsg:'Hallo,%20ich%20m%C3%B6chte%20eine%20Besichtigung%20von%20Lotes%20Quinta%20Maria%20Betania%20vereinbaren',tabInicio:'Start',tabLotes:'Parzellen',tabPrecios:'Preise',tabVisita:'Besuch',tabMenu:'Menü',
     trust1:'Eigentumstitel',trust2:'Direktfinanzierung ohne Banken',trust3:'Raten in Guaraní · 5% jährliche Anpassung',trust4:'An der Transchaco-Route',
     sobreLabel:'Über das Projekt',
     sobreTitle:'Ein Rückzugsort in der <em>Natur</em><br>nur Minuten von allem entfernt',
@@ -1969,7 +1984,8 @@ const translations = {
     heroSlogan:'« Là où la nature devient patrimoine. »',
     heroSub:'Famille, tranquillité et sécurité sur 14 hectares de nature au Km 50 de la Transchaco. Votre lieu de repos et de loisirs en famille.',
     stat1Label:'Lots disponibles',stat2Label:'Lot type',stat3Label:'Superficie totale',
-    heroCta1:'Je veux mon lot →',heroCta2:'Voir les caractéristiques',heroScroll:'Explorer',
+    heroCta1:'Planifier une visite',heroCta2:'Voir les lots',heroScroll:'Explorer',
+    waVisitMsg:'Bonjour,%20je%20souhaite%20planifier%20une%20visite%20%C3%A0%20Lotes%20Quinta%20Maria%20Betania',tabInicio:'Accueil',tabLotes:'Lots',tabPrecios:'Prix',tabVisita:'Visite',tabMenu:'Menu',
     trust1:'Titre de propriété',trust2:'Financement direct sans banques',trust3:'Mensualités en guaranis · Révision annuelle de 5%',trust4:'Sur la Route Transchaco',
     sobreLabel:'À propos du projet',
     sobreTitle:'Un refuge de <em>nature</em><br>à quelques minutes de tout',
@@ -2071,7 +2087,9 @@ function setLang(lang){
   // Update WhatsApp links
   const waUrl = 'https://wa.me/595981174005?text=' + t.waMsg;
   const navCta = document.getElementById('navCta'); if(navCta) navCta.href = waUrl;
-  const heroCta1 = document.getElementById('heroCta1'); if(heroCta1) heroCta1.href = waUrl;
+  const visitUrl = 'https://wa.me/595981174005?text=' + (t.waVisitMsg || t.waMsg);
+  const heroCta1 = document.getElementById('heroCta1'); if(heroCta1) heroCta1.href = visitUrl;
+  const mbTabVisita = document.getElementById('mbTabVisita'); if(mbTabVisita) mbTabVisita.href = visitUrl;
   const ctaWaBtn = document.getElementById('ctaWaBtn'); if(ctaWaBtn) ctaWaBtn.href = waUrl;
   const waFloat = document.getElementById('waFloat'); if(waFloat) waFloat.href = waUrl;
 }
@@ -2345,6 +2363,26 @@ function closeMobileMenu(){
 
 /* ================= RESET MENÚ MÓVIL AL CARGAR ================= */
 window.addEventListener('load', function(){ closeMobileMenu(); });
+
+/* ================= BARRA INFERIOR (CELULAR) ================= */
+window.addEventListener('load', function(){
+  const bar = document.getElementById('mbTabbar');
+  if(!bar) return;
+  const lotes = document.getElementById('mbTabLotes');
+  if(lotes && !document.getElementById('plano')) lotes.setAttribute('href', '#precios');
+  const tabs = {};
+  bar.querySelectorAll('[data-mb-tab]').forEach(a => { tabs[a.getAttribute('data-mb-tab')] = a; });
+  bar.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMobileMenu));
+  if(!('IntersectionObserver' in window)) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      Object.values(tabs).forEach(a => a.classList.remove('is-active'));
+      const a = tabs[e.target.id]; if(a) a.classList.add('is-active');
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('body > section[id]').forEach(el => obs.observe(el));
+});
 </script>
 
 
