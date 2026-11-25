@@ -1,0 +1,614 @@
+/*
+ * María Betania — capa de diseño (Lexend · verde, dorado y marfil)
+ * Base: paquete "Maria-Betania-Estilos-para-Programador" (maria-betania-diseno.css + LEEME.md).
+ *
+ * Cómo está armada
+ * - Se carga DESPUÉS del <style> original de index.html y solo actúa con <body class="mb-design">.
+ * - Cada regla está acotada a secciones públicas concretas (nav, menú móvil, portada, proyecto,
+ *   amenidades, precios, ubicación, mercado, proceso, preguntas, contacto, pie y barra móvil).
+ * - NO toca #plano (lo inyecta Netlify con sus propios estilos y código), ni body, ni :root,
+ *   ni la regla genérica "section", ni las variables originales. Por eso el plano queda igual.
+ * - Las fuentes originales (Cinzel, Montserrat, Libre Baskerville) se siguen cargando porque el
+ *   plano las usa.
+ */
+
+body.mb-design {
+  --mb-font: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mb-forest: #19372c;
+  --mb-dark: #172f25;
+  --mb-ivory: #fbf8f0;
+  --mb-sand: #f1ebdc;
+  --mb-gold: #ead2a0;
+  --mb-gold-ink: #8a6326;      /* dorado oscuro para textos chicos sobre fondo claro (contraste AA) */
+  --mb-border: #d7cdb4;
+  --mb-muted: #574c3d;         /* texto secundario sobre marfil/arena */
+  --mb-width: 82rem;
+  --mb-gutter: clamp(1.25rem, 5vw, 4rem);
+  --mb-section-space: clamp(3.75rem, 7vw, 6.5rem);
+  --mb-radius: 0.6rem;
+  --mb-tabbar: 64px;
+}
+
+/* Sin desplazamiento lateral en celular (clip no crea un contenedor de scroll nuevo). */
+html { overflow-x: clip; }
+
+/* =========================================================================
+   1. TIPOGRAFÍA — Lexend en toda la interfaz pública (lista explícita, sin #plano)
+   ========================================================================= */
+body.mb-design :is(#mainNav, #mobileMenu, #inicio, .trust-strip, #sobre, #caracteristicas, .numeros,
+  #precios, #ubicacion, #mercado, #proceso, #faq, #contacto, footer, .wa-float, #mbTabbar),
+body.mb-design :is(#mainNav, #mobileMenu, #inicio, .trust-strip, #sobre, #caracteristicas, .numeros,
+  #precios, #ubicacion, #mercado, #proceso, #faq, #contacto, footer, .wa-float, #mbTabbar) * {
+  font-family: var(--mb-font);
+  font-style: normal;
+}
+
+/* Encabezados de sección */
+.mb-design :is(#sobre, #caracteristicas, #precios, #ubicacion, #mercado, #proceso, #faq, #contacto) .section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--mb-gold-ink);
+}
+.mb-design :is(#sobre, #caracteristicas, #precios, #ubicacion, #mercado, #proceso, #faq, #contacto) .section-label::before {
+  background: currentColor;
+  width: 28px;
+}
+.mb-design :is(#sobre, #caracteristicas, #precios, #ubicacion, #mercado, #proceso, #faq, #contacto) .section-title {
+  font-size: clamp(2rem, 1.35rem + 2.3vw, 3.4rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--mb-forest);
+  margin-bottom: 1.25rem;
+}
+.mb-design :is(#sobre, #caracteristicas, #precios, #ubicacion, #mercado, #proceso, #faq, #contacto) .section-title em {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+.mb-design :is(#sobre, #caracteristicas, #ubicacion, #mercado, #proceso, #faq, #contacto) .section-intro {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--mb-muted);
+  max-width: 42rem;
+}
+
+/* Secciones oscuras: títulos y etiquetas en marfil y dorado claro */
+.mb-design :is(#precios, #contacto) .section-label { color: var(--mb-gold); }
+.mb-design :is(#precios, #contacto) .section-title { color: var(--mb-ivory); }
+.mb-design :is(#precios, #contacto) .section-title em { color: var(--dorado-claro); }
+
+/* =========================================================================
+   2. ESPACIADO Y SUPERFICIES DE LAS SECCIONES
+   ========================================================================= */
+.mb-design :is(#sobre, #caracteristicas, #precios, #ubicacion, #mercado, #proceso, #faq) {
+  padding: var(--mb-section-space) var(--mb-gutter);
+}
+.mb-design :is(#sobre, #mercado, #faq) { background: var(--mb-ivory); }
+.mb-design :is(#caracteristicas, #ubicacion, #proceso) { background: var(--mb-sand); }
+
+/* =========================================================================
+   3. NAVEGACIÓN
+   ========================================================================= */
+.mb-design #mainNav { padding-inline: clamp(1.25rem, 3vw, 3rem); gap: 1.5rem; }
+.mb-design #mainNav .logo-main {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+.mb-design #mainNav .logo-sub { font-weight: 400; font-size: 0.6rem; letter-spacing: 0.14em; white-space: nowrap; color: rgba(251, 248, 240, 0.6); }
+.mb-design #mainNav .nav-links { gap: clamp(1rem, 1.5vw, 1.9rem); }
+.mb-design #mainNav .nav-links a {
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  color: rgba(251, 248, 240, 0.82);
+}
+.mb-design #mainNav .nav-links a:hover,
+.mb-design #mainNav .nav-links a.active { color: var(--mb-gold); }
+.mb-design #mainNav .nav-cta {
+  white-space: nowrap;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  border-radius: 0.35rem;
+  padding: 0.75rem 1.4rem;
+}
+.mb-design #mainNav .lang-btn { font-weight: 500; font-size: 0.74rem; border-radius: 0.35rem; min-height: 44px; }
+.mb-design #mainNav .lang-dropdown { border-radius: 0.5rem; }
+.mb-design #mainNav .lang-option { font-size: 0.88rem; padding: 0.8rem 1.1rem; }
+
+/* Con siete enlaces (el plano suma «Plano»): en notebooks se oculta la línea chica del logo
+   y debajo de 1240 px el menú pasa a hamburguesa, para que nunca se amontone */
+@media (min-width: 1241px) and (max-width: 1400px) {
+  .mb-design #mainNav .logo-sub { display: none; }
+}
+@media (max-width: 1240px) {
+  .mb-design #mainNav .nav-links { display: none; }
+  .mb-design #mainNav .hamburger { display: flex; }
+}
+
+/* Menú lateral del celular */
+.mb-design #mobileMenu { width: min(340px, 88vw); padding: 6rem 1.75rem 2rem; }
+.mb-design #mobileMenu .mobile-menu-links a {
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--mb-ivory);
+  padding: 1rem 0.2rem;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+.mb-design #mobileMenu .mobile-menu-links a:hover { color: var(--mb-gold); }
+.mb-design #mobileMenu .mobile-menu-cta {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  border-radius: 0.45rem;
+  padding: 1.05rem;
+  min-height: 54px;
+}
+.mb-design #mobileMenu .mobile-menu-footer { font-size: 0.62rem; font-weight: 400; color: rgba(251, 248, 240, 0.45); }
+
+/* =========================================================================
+   4. PORTADA — carrusel original intacto; acciones más visibles
+   ========================================================================= */
+.mb-design #inicio { padding-inline: var(--mb-gutter); }
+.mb-design #inicio .hero-badge {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+}
+.mb-design #inicio h1 .hero-super {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.42em;
+  color: rgba(251, 248, 240, 0.66);
+}
+.mb-design #inicio h1 .hero-main {
+  font-size: clamp(2.9rem, 1.6rem + 4.4vw, 5.6rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  padding-bottom: 0.06em;
+}
+.mb-design #inicio .hero-slogan {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(251, 248, 240, 0.88);
+  letter-spacing: 0;
+}
+.mb-design #inicio .hero-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(251, 248, 240, 0.74);
+  max-width: 34rem;
+  margin: 1rem 0 2rem;
+}
+.mb-design #inicio .hero-stats { border-radius: 0.6rem; margin-bottom: 2.2rem; }
+.mb-design #inicio .hero-stat strong {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.mb-design #inicio .hero-stat span { font-size: 0.64rem; font-weight: 500; letter-spacing: 0.12em; color: rgba(251, 248, 240, 0.66); }
+
+/* Botones principales: «Ver lotes» (dorado) y «Agendar una visita» (marfil) */
+.mb-design #inicio .hero-buttons { gap: 0.85rem; }
+.mb-design #inicio :is(.btn-primary, .btn-secondary) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.6rem;
+  padding: 0 2rem;
+  border-radius: 0.45rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.mb-design #inicio .btn-primary {
+  background: linear-gradient(135deg, #f0dbad 0%, var(--dorado-claro) 100%);
+  color: var(--mb-dark);
+  box-shadow: 0 12px 32px rgba(217, 173, 98, 0.32);
+}
+.mb-design #inicio .btn-primary:hover { box-shadow: 0 16px 40px rgba(217, 173, 98, 0.45); }
+.mb-design #inicio .btn-secondary {
+  background: rgba(251, 248, 240, 0.1);
+  border: 1.5px solid rgba(251, 248, 240, 0.6);
+  color: var(--mb-ivory);
+}
+.mb-design #inicio .btn-secondary:hover {
+  background: var(--mb-ivory);
+  border-color: var(--mb-ivory);
+  color: var(--mb-forest);
+}
+/* Íconos dibujados con CSS (el texto lo reescribe el selector de idioma, así que no van dentro del HTML) */
+.mb-design #inicio :is(.btn-primary, .btn-secondary)::before {
+  content: "";
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: var(--mb-icon) center / contain no-repeat;
+  mask: var(--mb-icon) center / contain no-repeat;
+}
+.mb-design #inicio .btn-primary {
+  --mb-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z'/%3E%3Cpath d='M9 4v13M15 6.5v13'/%3E%3C/svg%3E");
+}
+.mb-design #inicio .btn-secondary {
+  --mb-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4M8.5 14h3'/%3E%3C/svg%3E");
+}
+.mb-design #inicio .hero-scroll { font-size: 0.62rem; font-weight: 500; }
+.mb-design #inicio .slide-label { font-size: 0.74rem; font-weight: 400; letter-spacing: 0.06em; }
+.mb-design #inicio .slide-label strong { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; }
+
+/* =========================================================================
+   5. FRANJA DE CONFIANZA Y NÚMEROS
+   ========================================================================= */
+.mb-design .trust-strip .trust-item { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em; color: rgba(251, 248, 240, 0.9); }
+.mb-design .numeros .numero-item strong { font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.mb-design .numeros .numero-item span { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; color: rgba(251, 248, 240, 0.66); }
+
+/* =========================================================================
+   6. EL PROYECTO
+   ========================================================================= */
+.mb-design #sobre .sobre-body { font-size: 1.02rem; line-height: 1.8; color: var(--mb-muted); }
+.mb-design #sobre .sobre-body strong { color: var(--mb-forest); font-weight: 600; }
+.mb-design #sobre .sobre-values { gap: 0.6rem; border-top-color: var(--mb-border); }
+.mb-design #sobre .sobre-value {
+  background: #fffdf8;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius);
+  padding: 0.9rem 0.6rem;
+}
+.mb-design #sobre .sobre-value span:not(.sv-ico) { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--mb-forest); }
+.mb-design #sobre .sobre-visual-label strong { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; }
+.mb-design #sobre .sobre-visual-label span { font-weight: 400; letter-spacing: 0.18em; }
+
+/* =========================================================================
+   7. AMENIDADES (ilustraciones originales, mismas proporciones)
+   ========================================================================= */
+.mb-design #caracteristicas .features-grid { gap: 1rem; margin-top: 2.75rem; }
+.mb-design #caracteristicas .feature-card {
+  background: var(--mb-ivory);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius);
+  padding: 1.9rem 1.4rem 1.7rem;
+}
+.mb-design #caracteristicas .feature-card h3 {
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--mb-forest);
+}
+.mb-design #caracteristicas .feature-card p { font-size: 0.9rem; line-height: 1.6; color: var(--mb-muted); }
+
+/* =========================================================================
+   8. PRECIOS Y FINANCIACIÓN (valores y condiciones de producción; solo estilo)
+   ========================================================================= */
+.mb-design #precios .urgencia-inner {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  text-align: center;
+}
+.mb-design #precios .precios-grid { gap: 1.25rem; }
+.mb-design #precios .precio-card { border-radius: 0.8rem; padding: clamp(1.6rem, 3vw, 2.6rem); }
+.mb-design #precios .precio-badge { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.14em; border-radius: 0 0 0.4rem 0.4rem; }
+.mb-design #precios .precio-tipo { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em; color: rgba(251, 248, 240, 0.72); }
+.mb-design #precios .precio-monto {
+  font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--mb-ivory);
+  font-variant-numeric: tabular-nums;
+}
+.mb-design #precios .precio-monto small {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgba(251, 248, 240, 0.66);
+}
+.mb-design #precios .precio-desc { font-size: 0.96rem; font-weight: 300; line-height: 1.65; color: rgba(251, 248, 240, 0.8); margin-top: 1rem; }
+.mb-design #precios .precio-desc strong { color: var(--mb-gold); font-weight: 600; }
+.mb-design #precios .precio-detalles li { font-size: 0.92rem; color: rgba(251, 248, 240, 0.85); }
+.mb-design #precios .precio-cta {
+  min-height: 50px;
+  padding: 0 1.3rem;
+  border: 1px solid rgba(234, 210, 160, 0.6);
+  border-radius: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--mb-gold);
+}
+.mb-design #precios .precio-cta:hover { background: rgba(234, 210, 160, 0.12); color: var(--mb-ivory); }
+.mb-design #precios .precio-card.destacado .precio-cta {
+  background: linear-gradient(135deg, #f0dbad 0%, var(--dorado-claro) 100%);
+  border-color: transparent;
+  color: var(--mb-dark);
+}
+.mb-design #precios .precio-horizonte { border-radius: 0.8rem; }
+.mb-design #precios .horizonte-item strong { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; }
+.mb-design #precios .horizonte-item span { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.12em; color: rgba(251, 248, 240, 0.62); }
+.mb-design #precios .precios-nota { font-size: 1rem; font-weight: 300; color: rgba(251, 248, 240, 0.7); }
+
+/* Precios por etapa (#mbe, lo inyecta Netlify dentro de Precios): solo tipografía y contraste */
+.mb-design #precios #mbe { border-radius: 0.8rem; }
+.mb-design #precios #mbe h3 { font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em; }
+.mb-design #precios #mbe > p { font-size: 0.9rem; font-weight: 300; color: rgba(251, 248, 240, 0.75); }
+.mb-design #precios #mbe .mbe-i { border-radius: 0.6rem; }
+.mb-design #precios #mbe .mbe-k { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; }
+.mb-design #precios #mbe .mbe-c { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.mb-design #precios #mbe .mbe-c small { font-size: 0.78rem; font-weight: 400; letter-spacing: 0; }
+.mb-design #precios #mbe .mbe-p { font-size: 0.82rem; color: rgba(251, 248, 240, 0.7); }
+.mb-design #precios #mbe .mbe-tag { font-weight: 700; letter-spacing: 0.1em; border-radius: 999px; }
+.mb-design #precios #mbe a { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; }
+
+/* =========================================================================
+   9. UBICACIÓN
+   ========================================================================= */
+.mb-design #ubicacion .ubicacion-list li { font-size: 0.95rem; }
+.mb-design #ubicacion .dist-km {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  min-width: 74px;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.35rem;
+  background: var(--mb-forest);
+  color: var(--mb-ivory);
+}
+.mb-design #ubicacion .dist-text { font-size: 0.95rem; color: var(--mb-muted); }
+.mb-design #ubicacion .ubicacion-nota {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--mb-muted);
+  background: var(--mb-ivory);
+  border-radius: 0 var(--mb-radius) var(--mb-radius) 0;
+}
+.mb-design #ubicacion .ubicacion-map { border-radius: 0.8rem; }
+.mb-design #ubicacion .map-center p { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.mb-design #ubicacion .map-center small { font-weight: 500; letter-spacing: 0.14em; }
+.mb-design #ubicacion .maps-btn {
+  min-height: 54px;
+  border-radius: 0.45rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: var(--mb-forest);
+  color: var(--mb-ivory);
+}
+
+/* =========================================================================
+   10. PARA QUIÉN ES
+   ========================================================================= */
+.mb-design #mercado .mercado-grid { gap: 1rem; }
+.mb-design #mercado .mercado-card {
+  background: #fffdf8;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius);
+}
+.mb-design #mercado .mercado-card h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; color: var(--mb-forest); }
+.mb-design #mercado .mercado-card p { font-size: 0.9rem; line-height: 1.6; color: var(--mb-muted); }
+
+/* =========================================================================
+   11. PROCESO DE COMPRA
+   ========================================================================= */
+.mb-design #proceso .proceso-num {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--mb-forest);
+  background: var(--mb-ivory);
+}
+.mb-design #proceso .proceso-step h3 { font-size: 1.04rem; font-weight: 600; letter-spacing: -0.01em; color: var(--mb-forest); }
+.mb-design #proceso .proceso-step p { font-size: 0.9rem; line-height: 1.6; color: var(--mb-muted); }
+
+/* =========================================================================
+   12. PREGUNTAS FRECUENTES
+   ========================================================================= */
+.mb-design #faq .faq-list { max-width: 52rem; }
+.mb-design #faq .faq-item {
+  background: #fffdf8;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius);
+  margin-bottom: 0.75rem;
+}
+.mb-design #faq .faq-item.open { border-color: var(--dorado); }
+.mb-design #faq .faq-q {
+  min-height: 60px;
+  padding: 1.1rem 1.4rem;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--mb-forest);
+}
+.mb-design #faq .faq-q .faq-arrow { color: var(--mb-gold-ink); font-size: 0.85rem; }
+.mb-design #faq .faq-a { font-size: 0.96rem; font-weight: 300; line-height: 1.7; color: var(--mb-muted); padding-inline: 1.4rem; }
+/* Más alto para que las respuestas largas no se corten en pantallas angostas */
+.mb-design #faq .faq-item.open .faq-a { max-height: 40rem; padding: 0 1.4rem 1.3rem; }
+
+/* =========================================================================
+   13. CONTACTO Y PIE
+   ========================================================================= */
+.mb-design #contacto { padding: clamp(4.5rem, 8vw, 7rem) var(--mb-gutter); }
+.mb-design #contacto .cta-slogan { font-size: 1.1rem; font-weight: 300; line-height: 1.7; color: rgba(251, 248, 240, 0.82); }
+.mb-design #contacto :is(.btn-wa, .btn-outline-crema) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.5rem;
+  padding: 0 2rem;
+  border-radius: 0.45rem;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+.mb-design #contacto .btn-wa { font-weight: 600; }
+.mb-design #contacto .btn-outline-crema { font-weight: 500; border: 1.5px solid rgba(251, 248, 240, 0.55); }
+.mb-design #contacto .social-link { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.1em; color: rgba(251, 248, 240, 0.7); }
+
+.mb-design footer .footer-brand h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.01em; }
+.mb-design footer .footer-brand p { font-size: 0.86rem; font-weight: 300; color: rgba(251, 248, 240, 0.62); }
+.mb-design footer .footer-col h5 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; }
+.mb-design footer .footer-col a { font-size: 0.9rem; color: rgba(251, 248, 240, 0.7); }
+.mb-design footer .footer-col .f-info { font-size: 0.88rem; font-weight: 300; color: rgba(251, 248, 240, 0.62); }
+.mb-design footer .footer-bottom { font-size: 0.72rem; color: rgba(251, 248, 240, 0.45); }
+.mb-design .wa-float .wa-label { font-size: 0.78rem; font-weight: 500; }
+
+/* =========================================================================
+   14. BARRA INFERIOR TIPO APP (solo celular y tablet vertical)
+   ========================================================================= */
+.mb-design #mbTabbar { display: none; }
+
+/* =========================================================================
+   15. CELULAR Y PANTALLAS ANGOSTAS
+   ========================================================================= */
+@media (max-width: 860px) {
+  .mb-design #mainNav .logo-wrap img { width: 52px; height: 52px; }
+  .mb-design #mainNav.scrolled .logo-wrap img { width: 44px; height: 44px; }
+  .mb-design #mainNav .logo-main { font-size: 0.82rem; }
+
+  /* Portada: los botones suben antes de las cifras para verse sin bajar tanto */
+  .mb-design #inicio { padding-top: 6.25rem; padding-bottom: 2.75rem; gap: 2rem; }
+  .mb-design #inicio .hero-content { display: flex; flex-direction: column; }
+  .mb-design #inicio .hero-badge { align-self: flex-start; font-size: 0.6rem; letter-spacing: 0.14em; margin-bottom: 1.4rem; }
+  .mb-design #inicio .hero-buttons { order: 1; margin-bottom: 1.6rem; }
+  .mb-design #inicio .hero-stats { order: 2; margin-bottom: 0; }
+  .mb-design #inicio .hero-sub { margin: 0.9rem 0 1.6rem; font-size: 0.96rem; }
+  .mb-design #inicio .hero-scroll { display: none; }
+  .mb-design #inicio .hero-stat strong { font-size: 1.55rem; }
+
+  .mb-design .trust-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0.6rem var(--mb-gutter); }
+  .mb-design .trust-strip .trust-item {
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 0.76rem;
+    line-height: 1.35;
+    padding: 0.75rem 0.4rem;
+    border-bottom: 1px solid rgba(251, 248, 240, 0.1);
+  }
+
+  .mb-design #precios .urgencia-inner { letter-spacing: 0.06em; font-size: 0.72rem; padding: 0.7rem 1.1rem; }
+  .mb-design #precios .precio-cta { width: 100%; justify-content: center; font-size: 0.78rem; letter-spacing: 0.03em; }
+  /* Con el menú lateral abierto, el botón flotante de WhatsApp no lo tapa */
+  body.mb-design:has(#mobileMenu.open) .wa-float { opacity: 0; pointer-events: none; }
+
+  .mb-design #contacto .cta-buttons { flex-direction: column; align-items: stretch; }
+
+  /* Barra inferior fija */
+  .mb-design #mbTabbar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 165;               /* debajo del menú lateral (170/180) y de la ficha del plano */
+    min-height: var(--mb-tabbar);
+    padding: 0.3rem 0.35rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(23, 47, 37, 0.97);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(234, 210, 160, 0.25);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.28);
+  }
+  .mb-design .mb-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+    min-height: 54px;
+    padding: 0.2rem 0.1rem;
+    border: 0;
+    border-radius: 0.6rem;
+    background: none;
+    color: rgba(251, 248, 240, 0.74);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+  }
+  .mb-design .mb-tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .mb-design .mb-tab.is-active { color: var(--mb-gold); background: rgba(234, 210, 160, 0.1); }
+  .mb-design .mb-tab--visita { color: var(--mb-gold); }
+
+  /* WhatsApp flotante y «volver arriba» quedan por encima de la barra */
+  .mb-design .wa-float { bottom: calc(var(--mb-tabbar) + 0.9rem + env(safe-area-inset-bottom, 0px)); right: 1rem; width: 54px; height: 54px; }
+  .mb-design #backToTop { bottom: calc(var(--mb-tabbar) + 1.1rem + env(safe-area-inset-bottom, 0px)); left: 1rem; }
+  .mb-design footer { padding-bottom: calc(2rem + var(--mb-tabbar) + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (max-width: 600px) {
+  /* Tarjetas en fila: ícono a la izquierda, texto a la derecha */
+  .mb-design #caracteristicas .features-grid,
+  .mb-design #mercado .mercado-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+  .mb-design #caracteristicas .feature-card,
+  .mb-design #mercado .mercado-card {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 1rem;
+    align-items: center;
+    text-align: left;
+    padding: 1rem 1.1rem;
+  }
+  .mb-design #caracteristicas .feature-icon { grid-row: span 2; margin: 0; }
+  .mb-design #caracteristicas .feature-icon img { width: 56px; height: 56px; }
+  .mb-design #mercado .mercado-emoji { grid-row: span 2; margin: 0; font-size: 2rem; text-align: center; }
+  .mb-design #caracteristicas .feature-card h3,
+  .mb-design #mercado .mercado-card h3 { margin: 0 0 0.2rem; align-self: end; }
+  .mb-design #caracteristicas .feature-card p,
+  .mb-design #mercado .mercado-card p { align-self: start; font-size: 0.86rem; }
+
+  /* Proceso como línea de tiempo vertical */
+  .mb-design #proceso .proceso-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .mb-design #proceso .proceso-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    column-gap: 1rem;
+    text-align: left;
+    padding: 0;
+  }
+  .mb-design #proceso .proceso-num { grid-row: span 2; width: 52px; height: 52px; margin: 0; font-size: 1.2rem; }
+  .mb-design #proceso .proceso-step h3 { margin: 0.35rem 0 0.15rem; }
+
+  .mb-design #sobre .sobre-values { display: grid; grid-template-columns: 1fr 1fr; }
+  .mb-design .numeros .numeros-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .mb-design #precios .horizonte-item { flex: 1 1 50%; }
+  .mb-design #faq .faq-q { font-size: 0.96rem; padding: 1rem 1.1rem; }
+  .mb-design #faq .faq-a,
+  .mb-design #faq .faq-item.open .faq-a { padding-inline: 1.1rem; }
+  .mb-design #inicio :is(.btn-primary, .btn-secondary) { width: 100%; }
+  .mb-design #mainNav .logo-sub { display: none; }
+  .mb-design #mainNav { gap: 0.6rem; }
+  .mb-design #mainNav .logo-wrap { gap: 0.6rem; }
+  .mb-design #mainNav .logo-main { font-size: 0.76rem; letter-spacing: 0.02em; white-space: nowrap; }
+  .mb-design #precios .precio-card.destacado { padding-top: 2.9rem; }
+}
+
+@media (max-width: 380px) {
+  .mb-design .trust-strip { grid-template-columns: 1fr; }
+  .mb-design .mb-tab { font-size: 0.6rem; }
+}
